@@ -10,6 +10,7 @@ import java.awt.Point;
 /**
  *
  * @author Predi
+ * who is Predi? - NMD
  */
 class Control {
 

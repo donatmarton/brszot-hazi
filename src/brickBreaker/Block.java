@@ -13,7 +13,7 @@ class Block extends Rectangle {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
 
 	private static Point DEFAULTSIZE = new Point(5,5);
 	

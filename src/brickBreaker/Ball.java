@@ -14,7 +14,7 @@ class Ball extends Ellipse2D.Double{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
 	
 	private static int MOVESTEP = 1;
 	private static int BOUNDARY_L = 0;

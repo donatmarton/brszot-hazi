@@ -13,6 +13,7 @@ class Paddle extends Rectangle{
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 
 	
 	private static int MOVESTEP = 1;
@@ -20,10 +21,11 @@ class Paddle extends Rectangle{
 	private static int BOUNDARY_R = 100;
 	
 	private Point pos;
+	private PlayField field; 
 	
 	public Paddle() {
 		this.pos = new Point(0,0);
-		this.setRect(10, 3, 5, 1);
+		this.setRect(300, 635, 40, 60);
 	}
 	
 	public Paddle(Point pos) {
@@ -53,6 +55,26 @@ class Paddle extends Rectangle{
 	 * @return true if successfully moved, false if unable to be moved
 	 */
 	public boolean refresh(Direction dir) {
+		if (field.getRight()) {
+			if (this.x + MOVESTEP > BOUNDARY_R)
+				return false;
+			else {
+				this.x += MOVESTEP;
+				return true;
+			}
+		}
+		else if(field.getLeft())  {
+			if (pos.x - MOVESTEP < BOUNDARY_L)
+				return false;
+			else {
+				pos.x -= MOVESTEP;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+/*	public boolean refresh(Direction dir) {
 		if (dir == Direction.RIGHT) {
 			if (pos.x + MOVESTEP > BOUNDARY_R)
 				return false;
@@ -69,7 +91,7 @@ class Paddle extends Rectangle{
 				return true;
 			}
 		}
-	}
+	}*/
 	
 	/**
 	 * @return the pos

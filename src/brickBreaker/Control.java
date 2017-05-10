@@ -18,7 +18,7 @@ public class Control {
 	private int score;
 	private int life;
 	private Direction dir;
-	private ArrayList<Double> allData;
+	private ArrayList<Integer> allData;
 	private Timer timer;
 
 	
@@ -54,9 +54,9 @@ public class Control {
 		
 		
 		int i = 0;
-		for (int x = 0; x < 1; x++){
-			for (int y = 0; y < 1; y++){
-				Point position = new Point(10,6);
+		for (int x = 0; x < 5; x++){
+			for (int y = 0; y < 3; y++){
+				Point position = new Point(x*125+85,y*125+85);
 				blockList.add(i, new Block(position,1,false));
 				System.out.println("tegla:" + position);
 				i++;
@@ -108,7 +108,7 @@ public class Control {
 		
 		for (int k = 0; k < blockList.size(); k++){
 			if (ball.intersects(blockList.get(k))){
-				
+
 				if (ball.getMaxX() > blockList.get(k).getMinX() && ball.getMinX() <  blockList.get(k).getMaxX()){
 					ball.setVely(-ball.getVel().y);
 					System.out.println(ball.getVel());
@@ -149,16 +149,16 @@ public class Control {
 	}
 	
 	
-	public ArrayList<Double> generateAllData(){
-		 allData = new ArrayList<Double>();
-		 allData.add(ball.x);
-		 allData.add(ball.y);
-		 allData.add((double)paddle.x);
-		 allData.add((double)paddle.y);
+	public ArrayList<Integer> generateAllData(){
+		 allData = new ArrayList<Integer>();
+		 allData.add((int)ball.x);
+		 allData.add((int)ball.y);
+		 allData.add((int)paddle.x);
+		 allData.add((int)paddle.y);
 		 for(int k = 0; k < blockList.size(); k++){
-			 allData.add((double)blockList.get(k).getBlockLife());
-			 allData.add((double)blockList.get(k).x);
-			 allData.add((double)blockList.get(k).y);	 			 
+			 allData.add(blockList.get(k).getBlockLife());
+			 allData.add(blockList.get(k).x);
+			 allData.add(blockList.get(k).y);	 			 
 		 }
 		 return allData;
 		
@@ -172,6 +172,7 @@ public class Control {
 	        ball.refresh();
 	        paddle.refresh(dir);
 	        collisionDetection();
+	        generateAllData();
 	        if (multiPlayer){
 	        	sendAllData(allData);
 	        	allDataReceived(allData);
@@ -180,7 +181,7 @@ public class Control {
 			System.out.println(ball.getVel());
 	    }
 	}
-	
+	 
 	void startServer() {
 		if (net != null)
 			net.disconnect();
@@ -195,14 +196,14 @@ public class Control {
 		net.connect("localhost");
 	}
 	
-	void sendAllData(ArrayList<Double> allData) {
+	void sendAllData(ArrayList<Integer> allData2) {
 		// gui.addPoint(p); //for drawing locally
 		if (net == null)
 			return;
 		//net.send(p);
 	}
 
-	void allDataReceived(ArrayList<Double> allData) {
+	void allDataReceived(ArrayList<Integer> allData2) {
 		if (gui == null)
 			return;
 		//gui.addPoint(p);
@@ -216,6 +217,9 @@ public class Control {
 	public void sendClick(Point point) {
 		// TODO Auto-generated method stub
 		
+	}
+	public ArrayList<Integer> getData(){
+		return allData;
 	}
 
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package brickBreaker;
 
 /**
@@ -10,4 +7,4 @@ package brickBreaker;
  */
 enum Direction {
 	RIGHT, LEFT
-}
+} 

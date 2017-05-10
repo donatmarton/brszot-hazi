@@ -8,11 +8,12 @@ package brickBreaker;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-class Block extends Rectangle {
+class Block extends Rectangle { 
 
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 
 
 	private static Point DEFAULTSIZE = new Point(5,5);
@@ -131,7 +132,6 @@ class Block extends Rectangle {
 	public static void setDEFAULTSIZE(Point dEFAULTSIZE) {
 		DEFAULTSIZE = dEFAULTSIZE;
 	}
-	
 	
 
 }

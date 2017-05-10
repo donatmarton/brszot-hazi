@@ -14,6 +14,7 @@ class Ball extends Ellipse2D.Double{
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
 
 	
 	private static int MOVESTEP = 1;
@@ -29,8 +30,8 @@ class Ball extends Ellipse2D.Double{
 		//new Ellipse2D.Double(10,10,2,2);
 		this.height = 2;
 		this.width = 2;
-		this.x = 10;
-		this.y = 10;
+		this.x = 500;
+		this.y = 500;
 		this.vel = new Point2D.Double(0,-1);
 	}
 	

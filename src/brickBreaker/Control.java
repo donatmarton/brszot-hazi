@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Control {
@@ -23,10 +24,10 @@ public class Control {
 
 	
 	// Field - konstans?
-	private int xMax = 615;
-	private int xMin = 35;
-	private int yMax = 595;
-	private int yMin = 30;
+	private int xMax = 655;
+	private int xMin = 40;
+	private int yMax = 680;
+	private int yMin = 85;
 		
 	
 	
@@ -55,11 +56,17 @@ public class Control {
 		
 		int i = 0;
 		for (int x = 0; x < 10; x++){
-			for (int y = 0; y < 3; y++){
-				Point position = new Point(x*60+55,y*100+105);
-				blockList.add(i, new Block(position,1,false));
+			for (int y = 0; y < 5; y++){
+				int blockLife = ThreadLocalRandom.current().nextInt(0, 4);
+				Point position = new Point(x*60+55,y*50+105);
+				blockList.add(i, new Block(position,blockLife,false));
 				System.out.println("tegla:" + position);
 				i++;
+			}
+		}
+		for (int k = 0; k < blockList.size(); k++){
+			if (blockList.get(k).decreaseBlockLife() <= 0){
+				blockList.remove(k);
 			}
 		}
 	}
@@ -133,7 +140,7 @@ public class Control {
 		
 		if (ball.intersects(paddle)){
 			ball.setVely(-ball.getVel().y); // csusztatas!!
-			ball.setVelx(ball.getVel().x + 1);
+			//ball.setVelx(ball.getVel().x + 1);
 			System.out.println("uto");
 		}
 		

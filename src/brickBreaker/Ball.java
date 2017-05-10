@@ -28,11 +28,11 @@ class Ball extends Ellipse2D.Double{
 	
 	Ball(){
 		//new Ellipse2D.Double(10,10,2,2);
-		this.height = 2;
-		this.width = 2;
+		this.height = 50;
+		this.width = 50;
 		this.x = 500;
 		this.y = 500;
-		this.vel = new Point2D.Double(0,-1);
+		this.vel = new Point2D.Double(0.5,-0.5);
 	}
 	
 /*	public Ball() {

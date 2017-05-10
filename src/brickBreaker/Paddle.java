@@ -25,7 +25,7 @@ class Paddle extends Rectangle{
 	
 	public Paddle() {
 		this.pos = new Point(0,0);
-		this.setRect(300, 635, 40, 60);
+		this.setRect(300, 635, 100, 3);
 	}
 	
 	public Paddle(Point pos) {

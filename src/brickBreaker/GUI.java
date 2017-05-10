@@ -261,7 +261,7 @@ void draw_levels() {
 		 int Paddle_pos_x = (int) Data.get(2);
 		 int Paddle_pos_y = (int) Data.get(3);
 		 g.setColor(Color.WHITE);
-		 g.fillRect(Paddle_pos_x, Paddle_pos_y, 100,30);
+		 g.fillRect(Paddle_pos_x, Paddle_pos_y, 100,3);
 		
 		 
 		 	 

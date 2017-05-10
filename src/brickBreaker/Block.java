@@ -47,8 +47,8 @@ class Block extends Rectangle {
 		this.x = pos.x;
 		this.y = pos.y;
 		setBlockLife(life);
-		this.width = 5;
-		this.height = 2;
+		this.width = 50;
+		this.height = 30;
 		special = spec;
 	}
 	

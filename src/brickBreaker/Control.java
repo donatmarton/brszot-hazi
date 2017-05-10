@@ -23,10 +23,10 @@ public class Control {
 
 	
 	// Field - konstans?
-	private int xMax = 20;
-	private int xMin = 0;
-	private int yMax = 20;
-	private int yMin = 0;
+	private int xMax = 615;
+	private int xMin = 35;
+	private int yMax = 595;
+	private int yMin = 30;
 		
 	
 	
@@ -54,9 +54,9 @@ public class Control {
 		
 		
 		int i = 0;
-		for (int x = 0; x < 5; x++){
+		for (int x = 0; x < 10; x++){
 			for (int y = 0; y < 3; y++){
-				Point position = new Point(x*125+85,y*125+85);
+				Point position = new Point(x*60+55,y*100+105);
 				blockList.add(i, new Block(position,1,false));
 				System.out.println("tegla:" + position);
 				i++;
@@ -144,7 +144,7 @@ public class Control {
 	public void playGame(){
 		init(1, false);	
 		timer = new Timer();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 1000, 10);
+        timer.scheduleAtFixedRate(new ScheduleTask(), 100, 1);
         
 	}
 	
@@ -170,14 +170,17 @@ public class Control {
 	    public void run() {
 
 	        ball.refresh();
-	        paddle.refresh(dir);
+	        System.out.println(ball.x);
+	        System.out.println(ball.y);
+	        //paddle.refresh(dir);
 	        collisionDetection();
 	        generateAllData();
 	        if (multiPlayer){
 	        	sendAllData(allData);
 	        	allDataReceived(allData);
 	        }
-	        System.out.print(ball.getPos());
+	        gui.drawScreen(allData);
+	        System.out.println(ball.getPos());
 			System.out.println(ball.getVel());
 	    }
 	}

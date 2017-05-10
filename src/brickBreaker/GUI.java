@@ -69,11 +69,12 @@ public class GUI extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			    //draw_levels();
-				ctrl.init(1, false);
+				//ctrl.init(1, false);
+				c.playGame();
 				ArrayList<Integer> uh = null;
 				uh=ctrl.generateAllData();
 				System.out.println("tea:" + uh.get(4));
-				drawScreen(uh);
+				//drawScreen(uh);
 			}
 		});
 		menu.add(menuItem);
@@ -138,7 +139,7 @@ public class GUI extends JFrame{
 
 		setJMenuBar(menuBar);
 		
-		inputPanel.setBounds(30, 30, 600, 600);
+		inputPanel.setBounds(30, 30, 620, 600);
 		inputPanel.setBorder(BorderFactory.createLineBorder(Color.black, 5));
 		inputPanel.addMouseListener(new MouseAdapter() {
 
@@ -248,6 +249,8 @@ void draw_levels() {
 			g.dispose();
 		}
 		
+		repaint();
+		
 		//Ball
 		 int Ball_pos_x = (int) Data.get(0);
 		 int Ball_pos_y = (int) Data.get(1);
@@ -260,6 +263,8 @@ void draw_levels() {
 		 g.setColor(Color.WHITE);
 		 g.fillRect(Paddle_pos_x, Paddle_pos_y, 100,30);
 		
+		 
+		 	 
 		//Blocks
 		int i=4;
 		while( i<Data.size()){
@@ -273,11 +278,14 @@ void draw_levels() {
 			if((int)Data.get(i)==3){
 			g.setColor(Color.RED);
 			}
-			g.fillRect((int)Data.get(i+1), (int)Data.get(i+2),20, 30);
+			g.fillRect((int)Data.get(i+1), (int)Data.get(i+2),50, 30);
 		}
 		i=i+3;
 		}
 		Toolkit.getDefaultToolkit().sync();
-		g.dispose();
+		
+		//g.dispose();
+		//repaint();
+		
 	}
 	}

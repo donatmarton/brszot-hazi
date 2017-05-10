@@ -155,8 +155,9 @@ class Ball extends Ellipse2D.Double{
 	/**
 	 * @return the pos
 	 */
-	public Point getPos() {
-		return pos;
+	public Point2D.Double getPos() {
+		//return pos;
+		return new Point2D.Double(this.x, this.y);
 	}
 
 	/**

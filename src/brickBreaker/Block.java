@@ -6,8 +6,14 @@ package brickBreaker;
  */
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
-class Block {
+class Block extends Rectangle {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static Point DEFAULTSIZE = new Point(5,5);
 	
@@ -35,11 +41,21 @@ class Block {
 		this.pos = pos;
 	}
 	
+	
+	Block(Point pos, int life, boolean spec){
+		this.x = pos.x;
+		this.y = pos.y;
+		setBlockLife(life);
+		this.width = 5;
+		this.height = 2;
+		special = spec;
+	}
+	
 	/**
 	 * decreases block life by one, if life above 0, else does nothing
 	 * @return true if successfully decreased, otherwise false
 	 */
-	public boolean decreaseBlockLife() {
+/*	public boolean decreaseBlockLife() {
 		if ( this.getBlockLife() > 0 ) {
 			setBlockLife(getBlockLife() - 1);
 			return true;
@@ -47,7 +63,12 @@ class Block {
 		else
 			return false;
 	}
-
+*/
+	public int decreaseBlockLife(){
+		this.blockLife--;
+		return blockLife;
+	}
+	
 	/**
 	 * @return the pos
 	 */
@@ -79,10 +100,10 @@ class Block {
 	/**
 	 * @return the size
 	 */
-	public Point getSize() {
+/*	public Point getSize() {
 		return size;
 	}
-
+*/
 	/**
 	 * @param size the size to set
 	 */

@@ -6,9 +6,15 @@ package brickBreaker;
  */
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
-class Paddle {
+class Paddle extends Rectangle{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private static int MOVESTEP = 1;
 	private static int BOUNDARY_L = 0;
 	private static int BOUNDARY_R = 100;
@@ -17,10 +23,15 @@ class Paddle {
 	
 	public Paddle() {
 		this.pos = new Point(0,0);
+		this.setRect(10, 3, 5, 1);
 	}
 	
 	public Paddle(Point pos) {
 		this.pos = pos;
+	}
+	
+	Paddle(double x, double y, double w, double h) {
+		this.setRect(x, y, w, h);
 	}
 	
 	public Paddle(

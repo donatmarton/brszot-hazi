@@ -6,9 +6,16 @@ package brickBreaker;
  */
 
 import java.awt.Point;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 
-class Ball {
+class Ball extends Ellipse2D.Double{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private static int MOVESTEP = 1;
 	private static int BOUNDARY_L = 0;
 	private static int BOUNDARY_R = 100;
@@ -16,10 +23,18 @@ class Ball {
 	private static int BOUNDARY_B = 0;
 	
 	private Point pos;
-	private Point vel;
+	private Point2D.Double vel;
 	
+	Ball(){
+		//new Ellipse2D.Double(10,10,2,2);
+		this.height = 2;
+		this.width = 2;
+		this.x = 10;
+		this.y = 10;
+		this.vel = new Point2D.Double(0,-1);
+	}
 	
-	public Ball() {
+/*	public Ball() {
 		this.pos = new Point(0,0);
 		this.vel = new Point(0,0);
 	}
@@ -46,7 +61,7 @@ class Ball {
 		Ball.setBOUNDARY_T(BOUNDARY_T);
 		Ball.setBOUNDARY_B(BOUNDARY_B);
 	}
-	
+*/	
 	/**
 	 * refresh the ball midpoint position to its next value based on
 	 * velocity vector and current position
@@ -54,7 +69,7 @@ class Ball {
 	 * similarly over BOUNDARY_T nor below BOUNDARY_B 
 	 * @return true if successfully moved, false if unable to be moved
 	 */
-	public boolean refresh() {
+/*	public boolean refresh() {
 		if (
 			(pos.x + vel.x > BOUNDARY_R) || (pos.x + vel.x < BOUNDARY_L) ||
 			(pos.y + vel.y > BOUNDARY_T) || (pos.y + vel.y < BOUNDARY_B) )
@@ -65,7 +80,7 @@ class Ball {
 			return true;
 		}
 	}
-
+*/
 	/**
 	 * @return the mOVESTEP
 	 */
@@ -153,15 +168,38 @@ class Ball {
 	/**
 	 * @return the vel
 	 */
-	public Point getVel() {
+/*	public Point getVel() {
 		return vel;
 	}
-
+*/
 	/**
 	 * @param vel the vel to set
 	 */
-	public void setVel(Point vel) {
+/*	public void setVel(Point vel) {
 		this.vel = vel;
 	}
+*/
+	
+	public void refresh() {
+		this.x = this.x +  this.vel.x;
+		this.y = this.y +  this.vel.y;
+	}
+	
 
+	public void setPos(Point2D.Double pos) {
+		this.x = pos.x;
+		this.y = pos.y;
+	}
+
+	public Point2D.Double getVel() {
+		return vel;
+	}
+
+	public void setVelx(double velx) {
+		this.vel.x = velx;
+	}
+	
+	public void setVely(double vely) {
+		this.vel.y = vely;
+	}
 }

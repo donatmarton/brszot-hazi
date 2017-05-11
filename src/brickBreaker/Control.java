@@ -192,33 +192,32 @@ public class Control {
 	    }
 	}
 	 
-	void startServer() {
+	void startServer(String ip) {
 		if (net != null)
 			net.disconnect();
 		net = new SerialServer(this);
-		net.connect("localhost");
+		net.connect(ip);
 	}
 	
-	void startClient() {
+	void startClient(String ip) {
 		if (net != null)
 			net.disconnect();
 		net = new SerialClient(this);
-		net.connect("localhost");
+		net.connect(ip);
 	}
 	
 	void sendAllData(ArrayList<Integer> allData2) {
-		// gui.addPoint(p); //for drawing locally
 		if (net == null)
 			return;
-		//net.send(p);
+		net.send(allData2);
 	}
 
 	void allDataReceived(ArrayList<Integer> allData2) {
 		if (gui == null)
 			return;
-		//gui.addPoint(p);
+		//gui.addPoint(p); // NMD: todo call processing function here
 	}
-
+/* MARKED FOR DELETION - NMD
 	public void clickReceived(Point received) {
 		// TODO Auto-generated method stub
 		
@@ -231,5 +230,5 @@ public class Control {
 	public ArrayList<Integer> getData(){
 		return allData;
 	}
-
+*/
 }

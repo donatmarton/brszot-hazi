@@ -1,8 +1,9 @@
 package brickBreaker;
 
-import java.awt.Point;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class SerialClient extends Network {
@@ -18,11 +19,11 @@ public class SerialClient extends Network {
 	private class ReceiverThread implements Runnable {
 
 		public void run() {
-			System.out.println("Waiting for points...");
+			System.out.println("Waiting for input...");
 			try {
 				while (true) {
-					Point received = (Point) in.readObject();
-					ctrl.clickReceived(received);
+					ArrayList<Integer> received = (ArrayList<Integer>) in.readObject();
+					ctrl.allDataReceived(received);
 				}
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
@@ -54,12 +55,12 @@ public class SerialClient extends Network {
 	}
 
 	@Override
-	void send(Point p) {
+	void send(ArrayList<Integer> allData) {
 		if (out == null)
 			return;
-		System.out.println("Sending point: " + p + " to Server");
+		System.out.println("Sending allData to Server");
 		try {
-			out.writeObject(p);
+			out.writeObject(allData);
 			out.flush();
 		} catch (IOException ex) {
 			System.err.println("Send error.");

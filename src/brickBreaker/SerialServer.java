@@ -1,11 +1,11 @@
 package brickBreaker;
 
-import java.awt.Point;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,8 +45,8 @@ public class SerialServer extends Network {
 
 			try {
 				while (true) {
-					Point received = (Point) in.readObject();
-					ctrl.clickReceived(received);
+					ArrayList<Integer> received = (ArrayList<Integer>) in.readObject();
+					ctrl.allDataReceived(received);
 				}
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
@@ -71,10 +71,10 @@ public class SerialServer extends Network {
 	}
 
 	@Override
-	void send(Point p) {
+	void send(ArrayList<Integer> p) {
 		if (out == null)
 			return;
-		System.out.println("Sending point: " + p + " to Client");
+		System.out.println("Sending allData to Client");
 		try {
 			out.writeObject(p);
 			out.flush();

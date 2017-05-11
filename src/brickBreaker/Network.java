@@ -4,7 +4,7 @@
  */
 package brickBreaker;
 
-import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,5 +22,5 @@ abstract class Network {
 
 	abstract void disconnect();
 
-	abstract void send(Point p);
+	abstract void send(ArrayList<Integer> allData);
 }

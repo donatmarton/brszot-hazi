@@ -33,7 +33,7 @@ public class PlayField extends JPanel /*implements KeyListener*/{
 	}
 	
 	
-
+/*
 	public void keyPressed(KeyEvent e){
 		int key= e.getKeyCode();
 		
@@ -57,5 +57,5 @@ public class PlayField extends JPanel /*implements KeyListener*/{
 	public boolean getRight(){
 		return Paddle_right;
 	}
-	
+	*/
 	}

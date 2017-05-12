@@ -7,8 +7,9 @@ package brickBreaker;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
-class Paddle extends Rectangle{
+class Paddle extends Rectangle2D.Double{
 
 	/**
 	 * 
@@ -16,16 +17,17 @@ class Paddle extends Rectangle{
 	private static final long serialVersionUID = 1L;
 
 	
-	private static int MOVESTEP = 1;
+	private static double MOVESTEP = 0.5;
 	private static int BOUNDARY_L = 0;
-	private static int BOUNDARY_R = 100;
+	private static int BOUNDARY_R = 600;
 	
 	private Point pos;
 	private PlayField field; 
+	private GUI gui;
 	
 	public Paddle() {
 		this.pos = new Point(0,0);
-		this.setRect(300, 635, 100, 3);
+		this.setRect(300, 635, 100, 10);
 	}
 	
 	public Paddle(Point pos) {
@@ -47,6 +49,10 @@ class Paddle extends Rectangle{
 		Paddle.setBOUNDARY_L(BOUNDARY_L);
 		Paddle.setBOUNDARY_R(BOUNDARY_R);
 	}
+	
+	public void setGUI(GUI g){
+		gui = g;
+	}
 
 	/**
 	 * refresh the paddle midpoint position to its next value based on
@@ -54,8 +60,8 @@ class Paddle extends Rectangle{
 	 * Midpoint will never go left of BOUNDARY_L, nor right of BOUNDARY_R 
 	 * @return true if successfully moved, false if unable to be moved
 	 */
-	public boolean refresh(Direction dir) {
-		if (field.getRight()) {
+	public boolean refresh() {
+		if (gui.getRight()) {
 			if (this.x + MOVESTEP > BOUNDARY_R)
 				return false;
 			else {
@@ -63,11 +69,11 @@ class Paddle extends Rectangle{
 				return true;
 			}
 		}
-		else if(field.getLeft())  {
-			if (pos.x - MOVESTEP < BOUNDARY_L)
+		else if(gui.getLeft())  {
+			if (this.x - MOVESTEP < BOUNDARY_L)
 				return false;
 			else {
-				pos.x -= MOVESTEP;
+				this.x -= MOVESTEP;
 				return true;
 			}
 		}
@@ -110,7 +116,7 @@ class Paddle extends Rectangle{
 	/**
 	 * @return the mOVESTEP
 	 */
-	public static int getMOVESTEP() {
+	public static double getMOVESTEP() {
 		return MOVESTEP;
 	}
 

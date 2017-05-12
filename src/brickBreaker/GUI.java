@@ -3,6 +3,7 @@ package brickBreaker;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -37,7 +38,7 @@ import java.io.FileWriter;
 class MyPanel extends JPanel { 
 
 }
-public class GUI extends JFrame{
+public class GUI extends JFrame implements KeyListener{
 
 	private Control ctrl;
 	private Leaderboards board;
@@ -50,6 +51,9 @@ public class GUI extends JFrame{
 	private Paddle Paddle;
 	private Block Block;
 	private DrawPanel drawPanel;
+	
+	private boolean Paddle_left;
+	private boolean Paddle_right;
 	  
 	BufferedImage buffer;
 	
@@ -59,6 +63,9 @@ public class GUI extends JFrame{
 		setSize(1000, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
+		
+		
+		addKeyListener((KeyListener) this);
 	
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Start");
@@ -146,7 +153,7 @@ public class GUI extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// System.out.println("X:" + e.getX() + " Y:" + e.getY());
-				ctrl.sendClick(new Point(e.getX(), e.getY()));
+				//ctrl.sendClick(new Point(e.getX(), e.getY()));
 			}
 		});
 		add(inputPanel);
@@ -157,6 +164,8 @@ public class GUI extends JFrame{
 		drawPanel.setBorder(BorderFactory.createTitledBorder("Draw"));
 		add(drawPanel);
 		setVisible(true);
+		
+		
 	}
 
 void draw_levels() {
@@ -238,18 +247,24 @@ void draw_levels() {
 			}
 		}
 	}
+	
+	
 
 	public void drawScreen(ArrayList<Integer> Data){
-		System.out.println("tsdasadscadd:" + Data.get(0) + Data.get(1));
-		Graphics2D g = (Graphics2D)this.getGraphics();
-
+		//System.out.println("tsdasadscadd:" + Data.get(0) + Data.get(1));
+		
+		Image offscreen = createImage(this.getWidth(), this.getHeight());
+		
+		Graphics2D g = (Graphics2D)offscreen.getGraphics();
+		
+		
 		if(gameOver){
 			g.setColor(Color.BLACK);
 			g.drawString("GAME OVER", (buffer.getWidth()/2), buffer.getHeight()/2);
 			g.dispose();
 		}
 		
-		repaint();
+		//repaint();
 		
 		//Ball
 		 int Ball_pos_x = (int) Data.get(0);
@@ -282,10 +297,53 @@ void draw_levels() {
 		}
 		i=i+3;
 		}
+		
+		this.getGraphics().drawImage(offscreen, 0, 0, this);
+		
+		//repaint();
 		Toolkit.getDefaultToolkit().sync();
 		
 		//g.dispose();
 		//repaint();
+		
+	}
+	
+	
+	
+	public void keyPressed(KeyEvent e){
+		
+		int key= e.getKeyCode();
+		
+		if(key == KeyEvent.VK_LEFT){
+
+			Paddle_left = true;
+			System.out.println("balra");
+		}
+		if(key == KeyEvent.VK_RIGHT){
+			Paddle_right = true;
+			System.out.println("jobbra");
+		}
+			
+	}
+	public void keyReleased(KeyEvent e){
+		int key = e.getKeyCode();
+		
+		if (key == KeyEvent.VK_LEFT)
+			Paddle_left = false;
+		if (key == KeyEvent.VK_RIGHT)
+			Paddle_right = false;
+	}
+
+	public boolean getLeft(){
+		return Paddle_left;
+	}
+	public boolean getRight(){
+		return Paddle_right;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	}

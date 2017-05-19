@@ -30,9 +30,31 @@ class Ball extends Ellipse2D.Double{
 		//new Ellipse2D.Double(10,10,2,2);
 		this.height = 50;
 		this.width = 50;
+		this.x = 305;
+		this.y = 360;
+		this.vel = new Point2D.Double(0,2);
+	}
+	
+	Ball(int level){
+		//new Ellipse2D.Double(10,10,2,2);
+		this.height = 50;
+		this.width = 50;
 		this.x = 300;
 		this.y = 300;
-		this.vel = new Point2D.Double(0,0.5);
+		switch(level){
+		case 1: {
+			this.vel = new Point2D.Double(0,2);
+			break;
+		}
+		case 2: {
+			this.vel = new Point2D.Double(0,3);
+			break;
+		}
+		case 3: {
+			this.vel = new Point2D.Double(0,4);
+			break;
+		}
+		}
 	}
 	
 /*	public Ball() {

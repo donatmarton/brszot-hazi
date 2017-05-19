@@ -14,6 +14,7 @@ public class SerialClient extends Network {
 
 	SerialClient(Control c) {
 		super(c);
+		c.setType(2);
 	}
 
 	private class ReceiverThread implements Runnable {
@@ -39,13 +40,14 @@ public class SerialClient extends Network {
 		disconnect();
 		try {
 			socket = new Socket(ip, 10007);
-
+			
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(socket.getInputStream());
 			out.flush();
 
 			Thread rec = new Thread(new ReceiverThread());
 			rec.start();
+			ctrl.playGame();
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host");
 		} catch (IOException e) {

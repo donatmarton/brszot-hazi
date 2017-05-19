@@ -18,6 +18,7 @@ public class SerialServer extends Network {
 
 	SerialServer(Control c) {
 		super(c);
+		c.setType(1);
 	}
 
 	private class ReceiverThread implements Runnable {
@@ -27,6 +28,7 @@ public class SerialServer extends Network {
 				System.out.println("Waiting for Client");
 				clientSocket = serverSocket.accept();
 				System.out.println("Client connected.");
+				ctrl.playGame();
 			} catch (IOException e) {
 				System.err.println("Accept failed.");
 				disconnect();

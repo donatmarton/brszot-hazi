@@ -17,7 +17,7 @@ class Paddle extends Rectangle2D.Double{
 	private static final long serialVersionUID = 1L;
 
 	
-	private static double MOVESTEP = 0.5;
+	private static double MOVESTEP = 3;
 	private static int BOUNDARY_L = 0;
 	private static int BOUNDARY_R = 600;
 	
@@ -27,9 +27,27 @@ class Paddle extends Rectangle2D.Double{
 	
 	public Paddle() {
 		this.pos = new Point(0,0);
-		this.setRect(300, 635, 100, 10);
+		this.setRect(300,635,100,10);
 	}
-	
+	public Paddle(int level) {
+		this.pos = new Point(0,0);
+		switch(level){
+		case 1:{
+			this.setRect(300,635,100,10);
+			break;
+		}
+		case 2:{
+			this.setRect(300,635,80,10);
+			break;
+		}
+		case 3:{
+			this.setRect(300,635,60,10);
+			break;
+		}
+		}
+		
+	}
+
 	public Paddle(Point pos) {
 		this.pos = pos;
 	}
@@ -62,7 +80,7 @@ class Paddle extends Rectangle2D.Double{
 	 */
 	public boolean refresh() {
 		if (gui.getRight()) {
-			if (this.x + MOVESTEP > BOUNDARY_R)
+			if (this.x + MOVESTEP + 50 > BOUNDARY_R)
 				return false;
 			else {
 				this.x += MOVESTEP;
@@ -70,7 +88,7 @@ class Paddle extends Rectangle2D.Double{
 			}
 		}
 		else if(gui.getLeft())  {
-			if (this.x - MOVESTEP < BOUNDARY_L)
+			if (this.x - MOVESTEP - 50 < BOUNDARY_L)
 				return false;
 			else {
 				this.x -= MOVESTEP;

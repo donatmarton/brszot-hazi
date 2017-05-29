@@ -5,7 +5,6 @@ package brickBreaker;
  *
  */
 
-import java.awt.Point;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
@@ -23,11 +22,9 @@ class Ball extends Ellipse2D.Double{
 	private static int BOUNDARY_T = 100;
 	private static int BOUNDARY_B = 0;
 	
-	private Point pos;
 	private Point2D.Double vel;
 	
 	Ball(){
-		//new Ellipse2D.Double(10,10,2,2);
 		this.height = 50;
 		this.width = 50;
 		this.x = 305;
@@ -36,7 +33,6 @@ class Ball extends Ellipse2D.Double{
 	}
 	
 	Ball(int level){
-		//new Ellipse2D.Double(10,10,2,2);
 		this.height = 50;
 		this.width = 50;
 		this.x = 300;
@@ -57,56 +53,7 @@ class Ball extends Ellipse2D.Double{
 		}
 	}
 	
-/*	public Ball() {
-		this.pos = new Point(0,0);
-		this.vel = new Point(0,0);
-	}
-	
-	public Ball(Point pos, Point vel) {
-		this.pos = pos;
-		this.vel = vel;
-	}
-	
-	public Ball(
-			Point pos, 
-			Point vel,
-			int MOVESTEP,
-			int BOUNDARY_L,
-			int BOUNDARY_R,
-			int BOUNDARY_T,
-			int BOUNDARY_B
-			) {
-		this.pos = pos;
-		this.vel = vel;
-		Ball.setMOVESTEP(MOVESTEP);
-		Ball.setBOUNDARY_L(BOUNDARY_L);
-		Ball.setBOUNDARY_R(BOUNDARY_R);
-		Ball.setBOUNDARY_T(BOUNDARY_T);
-		Ball.setBOUNDARY_B(BOUNDARY_B);
-	}
-*/	
-	/**
-	 * refresh the ball midpoint position to its next value based on
-	 * velocity vector and current position
-	 * Midpoint will never go left of BOUNDARY_L, nor right of BOUNDARY_R,
-	 * similarly over BOUNDARY_T nor below BOUNDARY_B 
-	 * @return true if successfully moved, false if unable to be moved
-	 */
-/*	public boolean refresh() {
-		if (
-			(pos.x + vel.x > BOUNDARY_R) || (pos.x + vel.x < BOUNDARY_L) ||
-			(pos.y + vel.y > BOUNDARY_T) || (pos.y + vel.y < BOUNDARY_B) )
-			return false;
-		else {
-			pos.x += vel.x;
-			pos.y += vel.y;
-			return true;
-		}
-	}
-*/
-	/**
-	 * @return the mOVESTEP
-	 */
+
 	public static int getMOVESTEP() {
 		return MOVESTEP;
 	}
@@ -178,32 +125,10 @@ class Ball extends Ellipse2D.Double{
 	 * @return the pos
 	 */
 	public Point2D.Double getPos() {
-		//return pos;
 		return new Point2D.Double(this.x, this.y);
 	}
 
-	/**
-	 * @param pos the pos to set
-	 */
-	public void setPos(Point pos) {
-		this.pos = pos;
-	}
 
-	/**
-	 * @return the vel
-	 */
-/*	public Point getVel() {
-		return vel;
-	}
-*/
-	/**
-	 * @param vel the vel to set
-	 */
-/*	public void setVel(Point vel) {
-		this.vel = vel;
-	}
-*/
-	
 	public void refresh() {
 		this.x = this.x +  this.vel.x;
 		this.y = this.y +  this.vel.y;

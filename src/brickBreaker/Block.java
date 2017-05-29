@@ -20,12 +20,10 @@ class Block extends Rectangle {
 	
 	private final boolean special;
 	private int blockLife;
-	private Point size;
 	private Point pos;
 	
 	public Block(boolean special) {
 		this.special = special;
-		this.size = Block.getDEFAULTSIZE();
 		this.pos = new Point(0,0);
 		this.blockLife = 1;
 	}
@@ -38,7 +36,6 @@ class Block extends Rectangle {
 			) {
 		this.special 	= special;
 		this.blockLife 	= blockLife;
-		this.size = size;
 		this.pos = pos;
 	}
 	
@@ -52,19 +49,7 @@ class Block extends Rectangle {
 		special = spec;
 	}
 	
-	/**
-	 * decreases block life by one, if life above 0, else does nothing
-	 * @return true if successfully decreased, otherwise false
-	 */
-/*	public boolean decreaseBlockLife() {
-		if ( this.getBlockLife() > 0 ) {
-			setBlockLife(getBlockLife() - 1);
-			return true;
-		}
-		else
-			return false;
-	}
-*/
+
 	public int decreaseBlockLife(){
 		this.blockLife--;
 		return blockLife;
@@ -98,19 +83,6 @@ class Block extends Rectangle {
 		this.blockLife = blockLife;
 	}
 
-	/**
-	 * @return the size
-	 */
-/*	public Point getSize() {
-		return size;
-	}
-*/
-	/**
-	 * @param size the size to set
-	 */
-	public void setSize(Point size) {
-		this.size = size;
-	}
 
 	/**
 	 * @return the special

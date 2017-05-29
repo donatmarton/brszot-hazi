@@ -6,7 +6,6 @@ package brickBreaker;
  */
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 class Paddle extends Rectangle2D.Double{
@@ -22,31 +21,13 @@ class Paddle extends Rectangle2D.Double{
 	private static int BOUNDARY_R = 600;
 	
 	private Point pos;
-	private PlayField field; 
 	private GUI gui;
 	
 	public Paddle() {
 		this.pos = new Point(0,0);
 		this.setRect(300,635,100,10);
 	}
-	public Paddle(int level) {
-		this.pos = new Point(0,0);
-		switch(level){
-		case 1:{
-			this.setRect(300,635,100,10);
-			break;
-		}
-		case 2:{
-			this.setRect(300,635,80,10);
-			break;
-		}
-		case 3:{
-			this.setRect(300,635,60,10);
-			break;
-		}
-		}
-		
-	}
+
 
 	public Paddle(Point pos) {
 		this.pos = pos;
@@ -98,25 +79,7 @@ class Paddle extends Rectangle2D.Double{
 		return false;
 	}
 	
-/*	public boolean refresh(Direction dir) {
-		if (dir == Direction.RIGHT) {
-			if (pos.x + MOVESTEP > BOUNDARY_R)
-				return false;
-			else {
-				pos.x += MOVESTEP;
-				return true;
-			}
-		}
-		else {
-			if (pos.x - MOVESTEP < BOUNDARY_L)
-				return false;
-			else {
-				pos.x -= MOVESTEP;
-				return true;
-			}
-		}
-	}*/
-	
+
 	/**
 	 * @return the pos
 	 */

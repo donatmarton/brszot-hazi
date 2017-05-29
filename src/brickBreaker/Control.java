@@ -1,7 +1,6 @@
 package brickBreaker;
 
 
-import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -20,7 +19,6 @@ public class Control {
 	private int level;
 	private int score;
 	private int life;
-	private Direction dir;
 	private ArrayList<Integer> allData;
 	private ArrayList<Integer> allData2 = null;
 	private Timer timer;
@@ -31,7 +29,7 @@ public class Control {
 	private boolean win = false;
 
 	
-	// Field - konstans?
+	// Field
 	private int xMax = 655;
 	private int xMin = 40;
 	private int yMax = 635;
@@ -49,11 +47,7 @@ public class Control {
 		gui = g;
 	}
 	
-	public void setDirection(Direction direction){
-		this.dir = direction;
-		
-	}
-
+	//a játékot inicializáló függvény
 	public void init(int setLevel){
 		level = setLevel;
 		allData2 = null;
@@ -106,6 +100,7 @@ public class Control {
 
 	}
 	
+	//élet csökkentése
 	public boolean decreaseLife(){
 		life--;
 		
@@ -121,11 +116,14 @@ public class Control {
 			
 	}
 	
+	//ütközés ellenörzése
 	public boolean collisionDetection(){
 		
 		//leesett
 		if (ball.getCenterY() >= yMax){
 			System.out.println("leesett");
+			
+			// ha elfogytak az életek
 			if (decreaseLife()){
 				this.play = false;
 				this.end = true;
@@ -187,6 +185,7 @@ public class Control {
 					
 				} 
 				
+				//tégla értékéne csökkentése
 				if (block.decreaseBlockLife() <= 0){
 					blockList.remove(k);
 					--k;
@@ -194,6 +193,7 @@ public class Control {
 				}
 				score++;
 				
+				//ha elfogytak a téglák, vége a játéknak
 				if (blockList.size() == 0){
 					this.play = false;
 					this.win = true;
@@ -229,9 +229,6 @@ public class Control {
 				
 			
 			double xDistance = (ball.x - paddle.x)/(paddle.width/2.0);
-			
-			
-			
 				
 			double vx = ball.getVel().x;
 			double vy = ball.getVel().y;
@@ -326,12 +323,9 @@ public class Control {
 	        	sendAllData(allData);	
 		        }
 		        gui.drawScreen();
-		        //System.out.println("jatek megy");
 		        
 	    	}
 	    	else{
-//	    		generateAllData();
-//	    		sendAllData(allData);
 	    		timer.cancel();
                 timer.purge();
                 System.out.println("jatek vege");
@@ -404,7 +398,6 @@ public class Control {
 			this.allData2 = allData2;
 		else
 			this.allData2 = null;
-		//gui.addPoint(p); // NMD: todo call processing function here
 	}
 
 	public boolean isPaused() {
@@ -431,17 +424,4 @@ public class Control {
 		return end;
 	}
 	
-/* MARKED FOR DELETION - NMD
-	public void clickReceived(Point received) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void sendClick(Point point) {
-		// TODO Auto-generated method stub
-		
-	}
-	public ArrayList<Integer> getData(){
-		return allData;
-	}
-*/
 }

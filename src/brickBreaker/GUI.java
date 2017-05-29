@@ -478,14 +478,16 @@ public class GUI extends JFrame implements KeyListener{
 		}
 		if(key == KeyEvent.VK_SPACE){
 			Pause = true;
-			System.out.println("szünet");
-			if(ctrl.isPaused()){
-				ctrl.resume();				
+			if (player == 1){
+				System.out.println("szünet");
+				if(ctrl.isPaused()){
+					ctrl.resume();				
+				}
+				else{
+					ctrl.pause();
+				}
+				ctrl.negatePaused();
 			}
-			else{
-				ctrl.pause();
-			}
-			ctrl.negatePaused();
 		}		
 	}
 	

@@ -1,17 +1,17 @@
 package brickBreaker;
 
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.io.FileWriter;
-import java.io.InputStreamReader;
+//import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+//import javax.swing.JFrame;
+//import javax.swing.JLabel;
+//import javax.swing.JPanel;
 
 public class Leaderboards{
 
@@ -88,10 +88,11 @@ public class Leaderboards{
 			writer.newLine();
 			writer.write(Name.get(0) + "-" + Name.get(1) + "-"+Name.get(2) + "-"+Name.get(3));
 			writer.newLine();
+			writer.close();
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-	
+		
 	}
 	private void createSaveData(){
 		FileWriter output = null;
@@ -104,9 +105,11 @@ public class Leaderboards{
 			writer.newLine();
 			writer.write("0-0-0-0");
 			writer.newLine();
+			writer.close();	
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+			
 	}
 	public int getHighScore(){
 		return Scores.get(0);

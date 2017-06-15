@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Toolkit;
+//import java.awt.Graphics2D;
+//import java.awt.Point;
+//import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,9 +15,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.BorderFactory;
+//import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -42,7 +44,7 @@ public class GUI extends JFrame implements KeyListener{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	private Control ctrl;
 	private int mode;
 	boolean gameOver = false;
@@ -279,19 +281,22 @@ public class GUI extends JFrame implements KeyListener{
 	public void DataIn() throws IOException{
 		BufferedReader in;
 		
-		in = new BufferedReader(new FileReader("score.txt"));
+		//in = new BufferedReader(new FileReader("score.txt"));
+		in = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("score.txt")));
+	    
 		list[0][0]="Name";
 		list[0][1]="Score";
 		for(int j=1;j<6;j++){
 			list[j][0]= in.readLine();
 			list[j][1]=in.readLine();
 		}
+		in.close();
 	}
 	
 	public void DataOut() throws IOException{
 		BufferedWriter out;
 		
-		out = new BufferedWriter(new FileWriter("score.txt"));
+		out = new BufferedWriter(new FileWriter("score.txt"));		
 		for(int i=1;i<6;i++){
 			for(int j=0;j<2;j++){
 			out.write(list[i][j]+"");
@@ -299,7 +304,7 @@ public class GUI extends JFrame implements KeyListener{
 			out.flush();
 			}
 		}
-		//out.close();
+		out.close();
 	}
 	public void SetToplist(int i) throws IOException{
 		JFrame frame2 = new JFrame("Top List Scores");
